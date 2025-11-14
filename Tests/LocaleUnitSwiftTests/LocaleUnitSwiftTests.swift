@@ -3,10 +3,9 @@ import XCTest
 
 final class LocaleUnitSwiftTests: XCTestCase {
     func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+        let u = LocaleUnitSwift()
+        let measure = Measurement(value: 5, unit: UnitLength.meters)
+        let sym = u.convertedToLocalePreferred(measure, locale: Locale(identifier: "en-US"))
+        print(sym)
     }
 }
