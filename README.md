@@ -11,7 +11,7 @@ The library can be helpful especially for automatic detection of the user-specif
 import LocaleUnitSwift
 
 let localeUnit = LocaleUnitSwift()
-let userArea = localeUnit.symbol(for: UnitLength.self) // returns the UnitLength for the user
+let userArea = localeUnit.unit(for: UnitLength.self) // returns the UnitLength for the user
 let userAreaString = localeUnit.symbol(for: UnitArea.self, locale: Locale(identifier: "en-US")) // returns "ft²"
 ```
 
