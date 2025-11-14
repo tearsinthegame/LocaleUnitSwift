@@ -123,15 +123,17 @@ public class LocaleUnitSwift {
         return Unit(symbol: "")
     }
     
+    /// Returns the user-specific Unit, if locale is not specified
     public func unit(for dimensionType: Dimension.Type, locale: Locale = .current) -> Unit {
         return getUnit(for: dimensionType, locale: locale)
     }
     
+    /// Returns the user-specific Unit symbol as String, if locale is not specified
     public func symbol(for dimensionType: Dimension.Type, locale: Locale = .current) -> String {
         return getUnit(for: dimensionType, locale: locale).symbol
     }
     
-    /// Convert a Measurement<U> to the locale-preferred Unit (if possible).
+    /// Convert a Measurement<U> to the locale-preferred Unit.
     /// If the conversion can't be determined, returns the original measurement.
     public func convertedToLocalePreferred<U: Dimension>(_ measurement: Measurement<U>, locale: Locale = .current) -> Measurement<U> {
         let targetUnit = getUnit(for: U.self as Dimension.Type, locale: locale)
