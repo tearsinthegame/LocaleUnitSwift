@@ -4,6 +4,9 @@
 import Foundation
 
 public class LocaleUnitSwift {
+    public init() {
+        
+    }
     
     /// Return the locale-preferred Unit for the given Dimension subclass type.
     /// If the platform doesn't offer `init(forLocale:)`, returns a sensible default unit.
