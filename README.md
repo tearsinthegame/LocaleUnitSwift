@@ -17,7 +17,7 @@ let userAreaString = localeUnit.symbol(for: UnitArea.self, locale: Locale(identi
 
 ## Setup
 
-You can add LocaleUnitSwift to your project with Swift Package Manager. In Xcode, select File > Add Package Dependency. Then, enter this Github repository URL: 
+You can add LocaleUnitSwift to your project with Swift Package Manager. In Xcode, select File > Add Package Dependency. Then, enter this Github repository URL: https://github.com/tearsinthegame/LocaleUnitSwift
 
 
 ## More About Usage
