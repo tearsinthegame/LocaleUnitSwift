@@ -123,6 +123,11 @@ public class LocaleUnitSwift {
             if #available(iOS 16.0, macOS 13.0, *) { return UnitVolume(forLocale: locale) }
         }
         
+        // Custom Units
+        if let customType = dimensionType as? LocaleUnitSwiftCustom.Type {
+            return customType.unit(for: locale)
+        }
+        
         return Unit(symbol: "")
     }
     
@@ -138,7 +143,7 @@ public class LocaleUnitSwift {
     
     /// Convert a Measurement<U> to the locale-preferred Unit.
     /// If the conversion can't be determined, returns the original measurement.
-    public func convertedToLocalePreferred<U: Dimension>(_ measurement: Measurement<U>, locale: Locale = .current) -> Measurement<U> {
+    public func convertedToLocaleValue<U: Dimension>(_ measurement: Measurement<U>, locale: Locale = .current) -> Measurement<U> {
         let targetUnit = getUnit(for: U.self as Dimension.Type, locale: locale)
         if let typed = targetUnit as? U {
             return measurement.converted(to: typed)
@@ -146,4 +151,9 @@ public class LocaleUnitSwift {
             return measurement
         }
     }
+}
+
+public protocol LocaleUnitSwiftCustom: Dimension {
+    /// Return the appropriate unit for the given locale.
+    static func unit(for locale: Locale) -> Unit
 }

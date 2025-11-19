@@ -20,14 +20,31 @@ let userAreaString = localeUnit.symbol(for: UnitArea.self, locale: Locale(identi
 You can add LocaleUnitSwift to your project with Swift Package Manager. In Xcode, select File > Add Package Dependency. Then, enter this Github repository URL: https://github.com/tearsinthegame/LocaleUnitSwift
 
 
-## More About Usage
+## More About Features
 
-It is also possible to convert Measurement to the user's default locale value with correct units, with the option to select the Locale:
+It is possible to convert Measurement to the user's default locale value with correct units, with the option to select the Locale:
 ```swift
 let localeUnit = LocaleUnitSwift()
 let measure = Measurement(value: 5, unit: UnitLength.meters)
-let converted = localeUnit.convertedToLocalePreferred(measure, locale: Locale(identifier: "en-US")) // returns converted Measurement, "16.404199475065617 ft"
+let converted = localeUnit.convertedToLocaleValue(measure, locale: Locale(identifier: "en-US")) // returns converted Measurement, "16.404199475065617 ft"
 ```
+
+You can use your custom Dimension classes by extending the LocaleUnitSwift's LocaleUnitSwiftCustom protocol for your own implementation. An example dimension, UnitCustom can be applied as follows:
+```swift
+extension UnitCustom: LocaleUnitSwiftCustom {
+    static func unit(for locale: Locale) -> Unit {
+        if locale.measurementSystem == .metric {
+            return Self.unitA
+        } else {
+            return Self.unitB
+        }
+    }
+}
+
+let symbol = LocaleUnitSwift().symbol(for: UnitCustom.self) // returns unitA symbol for locale metric system
+```
+> [!IMPORTANT]
+> You need to add protocol stubs to conform to the package functions
 
 ## LICENSE
 
