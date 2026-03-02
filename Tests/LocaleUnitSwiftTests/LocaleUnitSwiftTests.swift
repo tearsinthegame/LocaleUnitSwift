@@ -8,14 +8,13 @@ final class LocaleUnitSwiftTests: XCTestCase {
     func testMeasurement() throws {
         let u = LocaleUnitSwift()
         let measure = Measurement(value: 5, unit: UnitLength.meters)
-        let sym = u.convertedToLocaleValue(measure, locale: Locale(identifier: "en-US"))
+        let sym = u.convertedToLocaleValue(measure, locale: Locale(identifier: "en-US"), usage: MeasurementFormatUnitUsage<UnitLength>.rainfall)
         print(sym)
     }
     
     func testSymbol() throws {
         let u = LocaleUnitSwift()
-        //let unit = u.unit(for: UnitLength.self)
-        let sym = u.symbol(for: UnitLength.self, locale: Locale(identifier: "en-US"))
+        let sym = u.symbol(for: UnitLength.self, locale: Locale(identifier: "en-US"), usage: MeasurementFormatUnitUsage<UnitLength>.road)
         print(sym)
     }
     

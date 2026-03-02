@@ -22,11 +22,12 @@ You can add LocaleUnitSwift to your project with Swift Package Manager. In Xcode
 
 ## More About Features
 
-It is possible to convert Measurement to the user's default locale value with correct units, with the option to select the Locale:
+It is possible to convert Measurement to the user's default locale value with correct units, with the option to select the Locale and MeasurementFormatUnitUsage:
 ```swift
 let localeUnit = LocaleUnitSwift()
 let measure = Measurement(value: 5, unit: UnitLength.meters)
 let converted = localeUnit.convertedToLocaleValue(measure, locale: Locale(identifier: "en-US")) // returns converted Measurement, "16.404199475065617 ft"
+let symbol = localeUnit.symbol(for: UnitLength.self, locale: Locale(identifier: "en-US"), usage: MeasurementFormatUnitUsage<UnitLength>.road) // returns mi
 ```
 
 You can use your custom Dimension classes by extending the LocaleUnitSwift's LocaleUnitSwiftCustom protocol for your own implementation. An example dimension, UnitCustom can be applied as follows:
